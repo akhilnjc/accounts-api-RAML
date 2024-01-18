@@ -1,0 +1,39 @@
+#%RAML 1.0
+title: Customer Accounts API
+
+types:
+  AccountDetails: !include /exchange-datatype-modules/AccountDetails.raml
+
+/accountdetails:
+  get:
+    queryParameters:
+      name:
+        required: false
+      accounttype:
+        required: false
+        enum:
+          - personal
+          - business
+    responses:
+      200:
+        body:
+          application/json:
+            type: AccountDetails[]
+            examples:
+              output: !include /examples/AccountDetailsExample.raml
+
+    
+  post:
+    body:
+      application/json:
+        type: AccountDetails
+        examples:
+          input: !include  /examples/AccountDetailsWithNoIDExample.raml
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              message: Accounts Created
+              
+            
