@@ -20,8 +20,21 @@ types:
           application/json:
             type: AccountDetails[]
             examples:
+              output: !include /examples/AccountDetailsExamples.raml
+  /{ID}:
+   get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: AccountDetails
+            examples:
               output: !include /examples/AccountDetailsExample.raml
-
+      404:
+        body:
+          application/json:
+            example:
+              message: Account not Found 
     
   post:
     body:
@@ -35,5 +48,6 @@ types:
           application/json:
             example:
               message: Accounts Created
+  
               
             
